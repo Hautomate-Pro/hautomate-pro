@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic colour tokens: swap per theme */
+:root {
+  --bg: #f8fafc;
+  --alt: #f2f4f8;
+  --surface: #ffffff;
+  --ink: #151b28;
+  --muted: #5b6372;
+  --line: #dde1e8;
+  --brand: #1560bd;
+}
+.dark {
+  --bg: #0b1220;
+  --alt: #0e1627;
+  --surface: #111b2e;
+  --ink: #e8ecf4;
+  --muted: #9aa4b6;
+  --line: #233049;
+  --brand: #4f9cf0;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-alt: var(--alt);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  /* fixed colours (same in both themes) */
+  --color-solid: #1560bd;
+  --color-navy: #070e1c;
+  --color-sky: #5aa9f7;
+
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+section[id] {
+  scroll-margin-top: 5rem;
+}
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(90 169 247 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(90 169 247 / 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
