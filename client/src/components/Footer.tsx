@@ -51,15 +51,13 @@ export function Footer() {
           <h3 id="past-client-heading" className="font-mono text-[11px] font-normal uppercase tracking-[0.3em] text-slate-400">
             Past client
           </h3>
-          <div className="mt-5 grid items-center gap-6 sm:grid-cols-[minmax(0,420px)_1fr]">
-            <div className="group w-fit">
-              <LogoImage name={pastClient.name} src={`/clients/${pastClient.file}`} />
-            </div>
-            <div>
-              <p className="text-lg font-semibold text-white">{pastClient.name}</p>
-              <p className="mt-1 text-sm text-slate-400">{pastClient.location}</p>
-            </div>
-          </div>
+          <ul className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
+            <li>
+              <LogoTile name={pastClient.name} src={`/clients/${pastClient.file}`} />
+              <p className="mt-3 text-center text-sm font-semibold text-white">{pastClient.name}</p>
+              <p className="mt-1 text-center text-sm text-slate-400">{pastClient.location}</p>
+            </li>
+          </ul>
         </section>
       </div>
 
