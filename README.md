@@ -21,11 +21,18 @@ npm run build
 NODE_ENV=production npm start   # Express serves the API and the built React app
 ```
 
-## Still needed from the client / to verify
+## Deploying to Vercel with Neon
 
-- `client/public/images/hero.jpg` and `about.jpg` (originals; hero is a dark data-hall photo). Optional `og.jpg`.
-- `client/public/brand/icon.png` and the real logo SVG (replace `components/Logo.tsx`).
-- `client/public/vendors/*` logo files, named as in `src/content.ts`.
+The root `vercel.json` builds the client and server, serves the Vite output, and routes `/api/*` to a shared Express function. Set the Vercel project root to the repository root.
+
+Create a Neon Postgres project and add its pooled connection string as `DATABASE_URL` in Vercel. Also configure `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, and `CLIENT_ORIGIN`; add the SMTP variables if enquiry email is enabled. Set secrets in Vercel's environment settings, not in source control. Apply the schema to Neon with `npm run db:push` using the Neon connection string before relying on the production API.
+
+## Assets and content to verify
+
+- The supplied hero and About photos are in `client/public/images/`.
+- The supplied brand icons and wordmarks (light and dark) are in `client/public/brand/`; the logo is currently rendered from PNG files. An SVG version has not been supplied.
+- All seven vendor logos referenced in `src/content.ts` are in `client/public/vendors/`.
+- Optional: add an `og.jpg` social-sharing image.
 - Real legal text in `src/pages/Legal.tsx` (currently placeholders).
 - BMS tab copy in `src/content.ts` marked `VERIFY`.
 - Fonts load from Google Fonts. Self-host them if the client wants no third-party requests (this also affects the cookie/privacy wording).

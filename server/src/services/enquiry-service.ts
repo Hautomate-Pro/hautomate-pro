@@ -17,14 +17,14 @@ export const enquirySubmissionSchema = z.object({
 
 export async function createEnquiry(data: EnquiryInput): Promise<void> {
   const id = await insertEnquiry(data);
-
-  void sendEnquiryEmail(data)
-    .then(async (sent) => {
-      if (sent) await markEnquiryEmailed(id);
-    })
-    .catch((error: unknown) => {
+  const sent = await sendEnquiryEmail(data);
+  if (sent) {
+    try {
+      await markEnquiryEmailed(id);
+    } catch (error) {
       console.error('[mail] failed to update enquiry email status', error);
-    });
+    }
+  }
 }
 
 export function listLatestEnquiries() {
