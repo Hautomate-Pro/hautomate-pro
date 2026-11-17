@@ -4,15 +4,21 @@ import { Link } from 'react-router-dom';
 import { company, legalLinks, linkedinUrl, nav, pastClient, vendors } from '../content';
 import { Logo } from './Logo';
 
-function LogoTile({ name, src }: { name: string; src: string }) {
+function LogoImage({ name, src }: { name: string; src: string }) {
   const [failed, setFailed] = useState(false);
   return (
+    failed ? (
+      <span className="text-center text-sm font-semibold text-[#2b3140]">{name}</span>
+    ) : (
+      <img src={src} alt={`${name} logo`} className="max-h-10 w-auto max-w-full object-contain grayscale transition-all duration-300 group-hover:grayscale-0" onError={() => setFailed(true)} />
+    )
+  );
+}
+
+function LogoTile({ name, src }: { name: string; src: string }) {
+  return (
     <div className="group grid h-20 place-items-center bg-[#cdd0d6] px-4">
-      {failed ? (
-        <span className="text-center text-sm font-semibold text-[#2b3140]">{name}</span>
-      ) : (
-        <img src={src} alt={`${name} logo`} className="max-h-10 w-auto max-w-full object-contain grayscale transition-all duration-300 group-hover:grayscale-0" onError={() => setFailed(true)} />
-      )}
+      <LogoImage name={name} src={src} />
     </div>
   );
 }
@@ -46,8 +52,8 @@ export function Footer() {
             Past client
           </h3>
           <div className="mt-5 grid items-center gap-6 sm:grid-cols-[minmax(0,420px)_1fr]">
-            <div className="max-w-[420px]">
-              <LogoTile name={pastClient.name} src={`/clients/${pastClient.file}`} />
+            <div className="group w-fit">
+              <LogoImage name={pastClient.name} src={`/clients/${pastClient.file}`} />
             </div>
             <div>
               <p className="text-lg font-semibold text-white">{pastClient.name}</p>
