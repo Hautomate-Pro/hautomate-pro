@@ -5,7 +5,7 @@
   "description": "Marketing site for Hautomate Pro Limited, rebuilt as an owned codebase.",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "workspaces": [
     "client",
