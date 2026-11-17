@@ -23,7 +23,7 @@ NODE_ENV=production npm start   # Express serves the API and the built React app
 
 ## Deploying to Vercel with Neon
 
-The root `vercel.json` builds the client and server, serves the Vite output, and routes `/api/*` to a shared Express function. Set the Vercel project root to the repository root.
+The root `vercel.json` configures the Vite client (`client/`) and Express server (`server/`) as Vercel services, routing `/api/*` requests to the server. Set the Vercel project root to the repository root.
 
 Create a Neon Postgres project and add its pooled connection string as `DATABASE_URL` in Vercel. Also configure `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, and `CLIENT_ORIGIN`; add the SMTP variables if enquiry email is enabled. Set secrets in Vercel's environment settings, not in source control. Apply the schema to Neon with `npm run db:push` using the Neon connection string before relying on the production API.
 
