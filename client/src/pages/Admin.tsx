@@ -33,6 +33,10 @@ function errorMessage(error: unknown) {
   return error instanceof Error ? error.message : 'Something went wrong. Please try again.';
 }
 
+function apiError(data: AdminResponse, fallback: string) {
+  return typeof data.error === 'string' ? data.error : fallback;
+}
+
 export default function Admin() {
   const [adminState, setAdminState] = useState<AdminState>('checking');
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
@@ -54,7 +58,7 @@ export default function Admin() {
         setAdminState('signed-out');
         throw new Error('Your session has expired. Please sign in again.');
       }
-      if (!response.ok) throw new Error(data.error ?? 'Unable to load enquiries.');
+      if (!response.ok) throw new Error(apiError(data, 'Unable to load enquiries.'));
       setEnquiries(data.enquiries ?? []);
     } catch (requestError) {
       setError(errorMessage(requestError));
@@ -72,7 +76,7 @@ export default function Admin() {
         headers: { Accept: 'application/json' },
       });
       const data = await readResponse(response);
-      if (!response.ok) throw new Error(data.error ?? 'Unable to check admin access.');
+      if (!response.ok) throw new Error(apiError(data, 'Unable to check admin access.'));
       if (data.authenticated) {
         setAdminState('signed-in');
         await loadEnquiries();
@@ -101,7 +105,7 @@ export default function Admin() {
         body: JSON.stringify({ password }),
       });
       const data = await readResponse(response);
-      if (!response.ok) throw new Error(data.error ?? 'Sign-in failed.');
+      if (!response.ok) throw new Error(apiError(data, 'Sign-in failed.'));
       setPassword('');
       setAdminState('signed-in');
       await loadEnquiries();
@@ -121,7 +125,7 @@ export default function Admin() {
         headers: { Accept: 'application/json' },
       });
       const data = await readResponse(response);
-      if (!response.ok) throw new Error(data.error ?? 'Unable to sign out.');
+      if (!response.ok) throw new Error(apiError(data, 'Unable to sign out.'));
       setEnquiries([]);
       setPassword('');
       setAdminState('signed-out');
