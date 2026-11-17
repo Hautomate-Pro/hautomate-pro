@@ -4,15 +4,23 @@ import { Link } from 'react-router-dom';
 import { company, legalLinks, linkedinUrl, nav, pastClient, vendors } from '../content';
 import { Logo } from './Logo';
 
-function VendorLogo({ name, file }: { name: string; file: string }) {
+function LogoTile({ name, src }: { name: string; src: string }) {
   const [failed, setFailed] = useState(false);
   return (
-    <li className="group grid h-20 place-items-center bg-[#cdd0d6] px-4">
+    <div className="group grid h-20 place-items-center bg-[#cdd0d6] px-4">
       {failed ? (
         <span className="text-center text-sm font-semibold text-[#2b3140]">{name}</span>
       ) : (
-        <img src={`/vendors/${file}`} alt={`${name} logo`} className="max-h-10 w-auto max-w-full object-contain grayscale transition-all duration-300 group-hover:grayscale-0" onError={() => setFailed(true)} />
+        <img src={src} alt={`${name} logo`} className="max-h-10 w-auto max-w-full object-contain grayscale transition-all duration-300 group-hover:grayscale-0" onError={() => setFailed(true)} />
       )}
+    </div>
+  );
+}
+
+function VendorLogo({ name, file }: { name: string; file: string }) {
+  return (
+    <li>
+      <LogoTile name={name} src={`/vendors/${file}`} />
     </li>
   );
 }
@@ -38,12 +46,8 @@ export function Footer() {
             Past client
           </h3>
           <div className="mt-5 grid items-center gap-6 sm:grid-cols-[minmax(0,420px)_1fr]">
-            <div className="grid min-h-28 place-items-center bg-white p-4 sm:p-6">
-              <img
-                src={`/clients/${pastClient.file}`}
-                alt={`${pastClient.name} logo`}
-                className="max-h-24 w-auto max-w-full object-contain"
-              />
+            <div className="max-w-[420px]">
+              <LogoTile name={pastClient.name} src={`/clients/${pastClient.file}`} />
             </div>
             <div>
               <p className="text-lg font-semibold text-white">{pastClient.name}</p>
