@@ -18,6 +18,34 @@
       }
     },
     {
+      "source": "/admin",
+      "destination": {
+        "service": "client",
+        "path": "/"
+      }
+    },
+    {
+      "source": "/privacy",
+      "destination": {
+        "service": "client",
+        "path": "/"
+      }
+    },
+    {
+      "source": "/cookies",
+      "destination": {
+        "service": "client",
+        "path": "/"
+      }
+    },
+    {
+      "source": "/terms",
+      "destination": {
+        "service": "client",
+        "path": "/"
+      }
+    },
+    {
       "source": "/(.*)",
       "destination": {
         "service": "client"
