@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { company, legalLinks, nav, vendors } from '../content';
+import { company, legalLinks, linkedinUrl, nav, pastClient, vendors } from '../content';
 import { Logo } from './Logo';
 
 function VendorLogo({ name, file }: { name: string; file: string }) {
@@ -31,10 +32,29 @@ export function Footer() {
         <p className="mx-auto mt-8 max-w-3xl text-center text-[11px] leading-relaxed text-slate-500">
           Logos are shown solely to identify vendors and equipment manufacturers present on projects in which our personnel have participated. All trade marks are the property of their respective owners. Their display does not imply any partnership, sponsorship or endorsement of Hautomate Pro Limited.
         </p>
+
+        <section className="mt-12 border-t border-white/10 pt-10" aria-labelledby="past-client-heading">
+          <h3 id="past-client-heading" className="font-mono text-[11px] font-normal uppercase tracking-[0.3em] text-slate-400">
+            Past client
+          </h3>
+          <div className="mt-5 grid items-center gap-6 sm:grid-cols-[minmax(0,420px)_1fr]">
+            <div className="grid min-h-28 place-items-center bg-white p-4 sm:p-6">
+              <img
+                src={`/clients/${pastClient.file}`}
+                alt={`${pastClient.name} logo`}
+                className="max-h-24 w-auto max-w-full object-contain"
+              />
+            </div>
+            <div>
+              <p className="text-lg font-semibold text-white">{pastClient.name}</p>
+              <p className="mt-1 text-sm text-slate-400">{pastClient.location}</p>
+            </div>
+          </div>
+        </section>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr] lg:px-10">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_0.8fr] lg:px-10">
           <div>
             <Logo tone="inverse" />
             <p className="mt-6 max-w-sm text-slate-400">Project management and consulting for hyperscale data centre delivery across Europe, the Middle East and Africa.</p>
@@ -49,6 +69,28 @@ export function Footer() {
               <Link key={l.to} to={l.to} className="hover:text-white">{l.label}</Link>
             ))}
           </FooterList>
+          <div>
+            <h3 className="font-mono text-xs font-normal uppercase tracking-[0.25em] text-slate-500">Follow us</h3>
+            <div className="mt-5 flex flex-col items-start gap-3">
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Hautomate Pro Limited on LinkedIn"
+                className="text-slate-300 transition-colors hover:text-white"
+              >
+                <Linkedin size={28} strokeWidth={1.7} aria-hidden="true" />
+              </a>
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-slate-400 underline underline-offset-4 transition-colors hover:text-white"
+              >
+                Visit our LinkedIn page
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
