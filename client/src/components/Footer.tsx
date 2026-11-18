@@ -35,30 +35,33 @@ export function Footer() {
   return (
     <footer className="bg-navy text-slate-300">
       <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10">
-        <h2 className="text-center font-mono text-[11px] font-normal uppercase tracking-[0.3em] text-slate-400" style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.3em' }}>
-          Vendors and OEMs on projects our team has delivered
-        </h2>
-        <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
-          {vendors.map((v) => (
-            <VendorLogo key={v.name} {...v} />
-          ))}
-        </ul>
-        <p className="mx-auto mt-8 max-w-3xl text-center text-[11px] leading-relaxed text-slate-500">
-          Logos are shown solely to identify vendors and equipment manufacturers present on projects in which our personnel have participated. All trade marks are the property of their respective owners. Their display does not imply any partnership, sponsorship or endorsement of Hautomate Pro Limited.
-        </p>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(260px,1fr)]">
+          <section aria-labelledby="vendors-heading">
+            <h2 id="vendors-heading" className="font-mono text-[11px] font-normal uppercase tracking-[0.3em] text-slate-400" style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.3em' }}>
+              Vendors and OEMs on projects our team has delivered
+            </h2>
+            <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+              {vendors.map((v) => (
+                <VendorLogo key={v.name} {...v} />
+              ))}
+            </ul>
+          </section>
 
-        <section className="mt-12 border-t border-white/10 pt-10" aria-labelledby="past-client-heading">
-          <h3 id="past-client-heading" className="font-mono text-[11px] font-normal uppercase tracking-[0.3em] text-slate-400">
-            Past client
-          </h3>
-          <ul className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
-            <li>
+          <section aria-labelledby="past-client-heading">
+            <h2 id="past-client-heading" className="font-mono text-[11px] font-normal uppercase tracking-[0.3em] text-slate-400" style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.3em' }}>
+              Past client
+            </h2>
+            <div className="mt-6 max-w-[240px]">
               <LogoTile name={pastClient.name} src={`/clients/${pastClient.file}`} />
               <p className="mt-3 text-center text-sm font-semibold text-white">{pastClient.name}</p>
               <p className="mt-1 text-center text-sm text-slate-400">{pastClient.location}</p>
-            </li>
-          </ul>
-        </section>
+            </div>
+          </section>
+        </div>
+
+        <p className="mx-auto mt-8 max-w-5xl text-center text-[11px] leading-relaxed text-slate-500">
+          Disclaimer: We show logos only to identify past clients, vendors, and equipment manufacturers on projects our personnel have participated in. All trademarks are the property of their respective owners. Their display does not imply any partnership, sponsorship, or endorsement of Hautomate Pro Limited.
+        </p>
       </div>
 
       <div className="border-t border-white/10">
