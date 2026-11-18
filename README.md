@@ -27,6 +27,8 @@ Set the Vercel project root to the repository root. The root `vercel.json` confi
 
 Create a Neon Postgres project and add its pooled connection string as `DATABASE_URL` in Vercel. Also configure `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, and `CLIENT_ORIGIN`; add the SMTP variables if enquiry email is enabled. Set secrets in Vercel's environment settings, not in source control. Apply the schema to Neon with `npm run db:push` using the Neon connection string before relying on the production API.
 
+For a beginner-friendly explanation of the serverless module-format startup error and its fix, see [the Vercel Node module error notes](./docs/vercel-node-module-error.md).
+
 ## Assets and content to verify
 
 - The supplied hero and About photos are in `client/public/images/`.
