@@ -31,7 +31,7 @@ export function Contact() {
             <Row icon={MapPin} label="Registered office">
               {company.address.map((l) => (<span key={l} className="block">{l}</span>))}
             </Row>
-            <Row icon={Phone} label="Telephone"><a href={company.phoneHref} className="hover:text-brand">{company.phone}</a></Row>
+            {/* <Row icon={Phone} label="Telephone"><a href={company.phoneHref} className="hover:text-brand">{company.phone}</a></Row> */}
             <Row icon={Mail} label="Email"><a href={`mailto:${company.email}`} className="break-all hover:text-brand">{company.email}</a></Row>
             <Row icon={Clock} label="Office hours">{company.hours}</Row>
           </div>
