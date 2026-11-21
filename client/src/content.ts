@@ -2,8 +2,8 @@
 
 export const company = {
   name: 'Hautomate Pro Limited',
-  phone: '+44 7550 487800',
-  phoneHref: 'tel:+447550487800',
+  phone: '+44 7453 420517',
+  phoneHref: 'tel:+447453420517',
   email: 'hautomateprouk@gmail.com',
   number: '15414164',
   address: ['Hautomate Pro Limited', 'Office 11366', '182-184 High Street North', 'East Ham, London', 'E6 2JA', 'United Kingdom'],
