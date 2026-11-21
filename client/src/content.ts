@@ -11,11 +11,11 @@ export const company = {
 };
 
 export const nav = [
-  { label: 'Services', href: '/#services' },
-  { label: 'Systems', href: '/#systems' },
-  { label: 'Approach', href: '/#approach' },
-  { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Services', href: '/services' },
+  { label: 'Systems', href: '/systems' },
+  { label: 'Approach', href: '/approach' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const heroChips = ['MEP', 'HVAC', 'EPMS', 'BMS', 'Commissioning'];

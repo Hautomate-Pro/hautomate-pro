@@ -1,4 +1,5 @@
 import { ArrowRight, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { heroChips } from '../content';
 
 export function Hero() {
@@ -30,12 +31,12 @@ export function Hero() {
             Hautomate Pro provides project management and technical consulting for hyperscale data centres, from MEP and HVAC to power monitoring and building management systems, so your capacity goes live on schedule and to specification.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="/#contact" className="inline-flex items-center gap-3 bg-solid px-8 py-4 font-semibold transition-colors hover:bg-[#104d99]">
+            <Link to="/contact" className="inline-flex items-center gap-3 bg-solid px-8 py-4 font-semibold transition-colors hover:bg-[#104d99]">
               Discuss your project <ArrowRight size={18} />
-            </a>
-            <a href="/#services" className="border border-white/25 px-8 py-4 font-semibold transition-colors hover:bg-white/10">
+            </Link>
+            <Link to="/services" className="border border-white/25 px-8 py-4 font-semibold transition-colors hover:bg-white/10">
               Explore services
-            </a>
+            </Link>
           </div>
         </div>
 

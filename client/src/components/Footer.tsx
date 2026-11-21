@@ -72,7 +72,7 @@ export function Footer() {
           </div>
           <FooterList title="Explore">
             {nav.map((n) => (
-              <a key={n.href} href={n.href} className="hover:text-white">{n.label}</a>
+              <Link key={n.href} to={n.href} className="hover:text-white">{n.label}</Link>
             ))}
           </FooterList>
           <FooterList title="Legal">
