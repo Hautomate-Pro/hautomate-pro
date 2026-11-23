@@ -12,6 +12,7 @@ export const enquirySubmissionSchema = z.object({
   phone: optionalText(40),
   location: optionalText(160),
   message: z.string().trim().min(10, 'Tell us a little about your project').max(5000),
+  marketing: z.boolean().default(false),
   website: z.string().optional(),
 });
 

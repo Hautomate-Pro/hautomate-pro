@@ -1,8 +1,8 @@
 import { Send } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 
-type Fields = { name: string; email: string; company: string; phone: string; location: string; message: string; website: string };
-const empty: Fields = { name: '', email: '', company: '', phone: '', location: '', message: '', website: '' };
+type Fields = { name: string; email: string; company: string; phone: string; location: string; message: string; website: string; marketing: boolean };
+const empty: Fields = { name: '', email: '', company: '', phone: '', location: '', message: '', website: '', marketing: false };
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 const inputCls =
@@ -54,7 +54,7 @@ export function EnquiryForm() {
     );
   }
 
-  const field = (k: keyof Fields, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
+  const field = (k: Exclude<keyof Fields, 'marketing'>, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
     <div>
       <label htmlFor={k} className="text-sm font-medium">{label}</label>
       <input id={k} name={k} value={values[k]} onChange={set(k)} className={inputCls} aria-invalid={!!errors[k]} aria-describedby={errors[k] ? `${k}-err` : undefined} {...props} />
@@ -80,6 +80,24 @@ export function EnquiryForm() {
       <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={values.website} onChange={set('website')} className="absolute -left-[9999px] h-0 w-0 opacity-0" />
 
       {formError && <p role="alert" className="text-sm text-red-600 dark:text-red-400">{formError}</p>}
+      <div className="flex items-start gap-3 pt-4 border-t border-line">
+        <input
+          id="marketing"
+          name="marketing"
+          type="checkbox"
+          checked={values.marketing}
+          onChange={() => setValues((v) => ({ ...v, marketing: !v.marketing }))}
+          className="mt-1 shrink-0 text-brand border-line focus:ring-brand"
+        />
+        <label htmlFor="marketing" className="text-sm leading-relaxed text-muted">
+          I consent to Hautomate Pro using my details to send me marketing communications. This is
+          separate from my enquiry and I can withdraw consent at any time. See our{' '}
+          <a href="/privacy" className="underline underline-offset-4 hover:text-brand">
+            Privacy Notice
+          </a>
+          .
+        </label>
+      </div>
       <div>
         <button type="submit" disabled={status === 'sending'} className="inline-flex items-center gap-2 bg-solid px-6 py-3.5 font-semibold text-white transition-colors hover:bg-[#104d99] disabled:opacity-60">
           <Send size={18} /> {status === 'sending' ? 'Sending…' : 'Send enquiry'}
