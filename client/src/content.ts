@@ -100,4 +100,5 @@ export const legalLinks = [
   { label: 'Privacy Notice', to: '/privacy' },
   { label: 'Cookie Policy', to: '/cookies' },
   { label: 'Website Terms', to: '/terms' },
+  { label: 'Recruitment Privacy', to: '/recruitment' },
 ];

@@ -8,6 +8,7 @@ export const enquiries = pgTable('enquiries', {
   phone: varchar('phone', { length: 40 }).notNull().default(''),
   location: varchar('location', { length: 160 }).notNull().default(''),
   message: text('message').notNull(),
+  marketing: boolean('marketing').notNull().default(false),
   emailed: boolean('emailed').notNull().default(false),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 });

@@ -46,6 +46,7 @@ export async function sendEnquiryEmail(e: EnquiryInput): Promise<boolean> {
         `Company: ${e.company || '-'}`,
         `Phone: ${e.phone || '-'}`,
         `Project location: ${e.location || '-'}`,
+        `Marketing consent: ${e.marketing ? 'Yes' : 'No'}`,
         '',
         e.message,
       ].join('\n'),
