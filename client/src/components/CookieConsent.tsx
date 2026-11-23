@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const CONSENT_KEY = 'hautomate_cookie_consent';
 type ConsentState = 'not_asked' | 'accepted' | 'rejected';
@@ -35,12 +36,12 @@ export function CookieConsent() {
             </p>
             <p className="mt-2 text-xs text-slate-500">
               Read our{' '}
-              <a
-                href="/cookies"
+              <Link
+                to="/cookies"
                 className="text-brand underline underline-offset-4 hover:text-white"
               >
                 Cookie Policy
-              </a>
+              </Link>
               .
             </p>
           </div>

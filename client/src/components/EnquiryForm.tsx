@@ -1,5 +1,6 @@
 import { Send } from 'lucide-react';
 import { FormEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type Fields = { name: string; email: string; company: string; phone: string; location: string; message: string; website: string; marketing: boolean };
 const empty: Fields = { name: '', email: '', company: '', phone: '', location: '', message: '', website: '', marketing: false };
@@ -92,9 +93,9 @@ export function EnquiryForm() {
         <label htmlFor="marketing" className="text-sm leading-relaxed text-muted">
           I consent to Hautomate Pro using my details to send me marketing communications. This is
           separate from my enquiry and I can withdraw consent at any time. See our{' '}
-          <a href="/privacy" className="underline underline-offset-4 hover:text-brand">
+          <Link to="/privacy" className="underline underline-offset-4 hover:text-brand">
             Privacy Notice
-          </a>
+          </Link>
           .
         </label>
       </div>
