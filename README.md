@@ -41,7 +41,7 @@ For a beginner-friendly explanation of the serverless module-format startup erro
 
 ## Enquiries
 
-`POST /api/enquiries` validates (zod), stores to Postgres, and emails `ENQUIRY_TO` if SMTP is configured.
+`POST /api/enquiries` validates (zod), stores to Postgres, and emails `ENQUIRY_TO` if SMTP is configured. It also sends the submitter a receipt email; SMTP failures do not prevent the enquiry from being stored.
 
 ## Admin
 
@@ -59,4 +59,4 @@ The Express server separates startup (`src/index.ts`) from app/middleware wiring
 
 ## Email delivery
 
-When `SMTP_HOST` and `ENQUIRY_TO` are configured, the server verifies the SMTP connection at startup and logs failures. SMTP failure does not stop the site; enquiries are still stored in Postgres.
+When `SMTP_HOST` and `ENQUIRY_TO` are configured, the server verifies the SMTP connection at startup and logs failures. A successful form submission sends a notification to `ENQUIRY_TO` and a receipt to the submitter's email address. SMTP failure does not stop the site; enquiries are still stored in Postgres.
