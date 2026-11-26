@@ -57,3 +57,33 @@ export async function sendEnquiryEmail(e: EnquiryInput): Promise<boolean> {
     return false;
   }
 }
+
+export async function sendEnquiryConfirmationEmail(e: EnquiryInput): Promise<boolean> {
+  if (!transporter || !env.ENQUIRY_TO) {
+    console.log('[mail] SMTP not configured; enquiry confirmation not sent.');
+    return false;
+  }
+  try {
+    await transporter.sendMail({
+      from: env.MAIL_FROM ?? env.ENQUIRY_TO,
+      to: e.email,
+      replyTo: env.ENQUIRY_TO,
+      subject: 'We received your enquiry',
+      text: [
+        `Hi ${e.name},`,
+        '',
+        'Thank you for contacting Hautomate Pro. We have received your enquiry and aim to respond within two working days.',
+        '',
+        'For your reference, your message was:',
+        e.message,
+        '',
+        'Kind regards,',
+        'Hautomate Pro',
+      ].join('\n'),
+    });
+    return true;
+  } catch (err) {
+    console.error('[mail] failed to send enquiry confirmation', err);
+    return false;
+  }
+}

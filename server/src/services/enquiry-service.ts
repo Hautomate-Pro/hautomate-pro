@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { findLatestEnquiries, insertEnquiry, markEnquiryEmailed } from '../repositories/enquiry-repository.js';
 import type { EnquiryInput } from '../types/enquiry.js';
-import { sendEnquiryEmail } from './mailer.js';
+import { sendEnquiryConfirmationEmail, sendEnquiryEmail } from './mailer.js';
 
 const optionalText = (max: number) => z.string().trim().max(max).default('');
 
@@ -18,7 +18,10 @@ export const enquirySubmissionSchema = z.object({
 
 export async function createEnquiry(data: EnquiryInput): Promise<void> {
   const id = await insertEnquiry(data);
-  const sent = await sendEnquiryEmail(data);
+  const [sent] = await Promise.all([
+    sendEnquiryEmail(data),
+    sendEnquiryConfirmationEmail(data),
+  ]);
   if (sent) {
     try {
       await markEnquiryEmailed(id);
